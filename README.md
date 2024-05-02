@@ -10,8 +10,8 @@ The Sports Management System is a Java-based application for managing players, s
 4. Compile and run the `imt2022521_sports.java` file to start the application.
 
 ## File Structure
-- `imt2022521_sports.java`: Java source code file containing the main application logic.
-- `imt2022521_scripts.sql`: SQL script for creating the database schema and inserting sample data.
+1. `imt2022521_sports.java`: Java source code file containing the main application logic.
+2. `imt2022521_scripts.sql`: SQL script for creating the database schema and inserting sample data.
 
 ## Usage
 1. Upon running the application, follow the on-screen prompts to perform various operations such as inserting players, sports, coaches, and player-sport relationships.
@@ -19,10 +19,20 @@ The Sports Management System is a Java-based application for managing players, s
 3. Follow the instructions to input required information for each operation.
 4. The application will execute the selected operation and provide feedback on the console.
 
-## Dependencies
-- Java Development Kit (JDK)
-- MySQL Database
+# Database Schema
 
-## Contributors
+The database schema consists of the following tables:
+
+1. **players**: Stores information about players.
+2. **sports**: Stores information about sports.
+3. **player_sports**: Maps players to the sports they participate in.
+4. **coaches**: Stores information about coaches.
+5. **sports_per_player**: Tracks the count of sports each player participates in.
+
+## Dependencies
+1. Java Development Kit (JDK)
+2. MySQL Database
+
+## Contributor
 - Sarvesh Kumar . A
 
