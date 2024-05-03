@@ -221,6 +221,26 @@ public class imt2022521_sports {
          se.printStackTrace();
       }
    }
+   // create a function using inner join to get the sport name and coach name
+   public static void Get_Sport_And_Coach(Statement stmt, String player_id) {
+      String query = "SELECT s.sport_name, c.coach_name " +
+                     "FROM player_sports ps " +
+                     "INNER JOIN sports s ON ps.sport_id = s.sport_id " +
+                     "INNER JOIN coaches c ON c.sport_id = s.sport_id " +
+                     "WHERE ps.player_id = '" + player_id + "'";
+      System.out.println(query);
+      try {
+          ResultSet rs = stmt.executeQuery(query);
+          while (rs.next()) {
+              String sport_name = rs.getString(1);
+              String coach_name = rs.getString(2);
+              System.out.println("Player with id " + player_id + " is participating in sport " + sport_name + " with coach " + coach_name);
+          }
+      } catch (SQLException se) {
+          se.printStackTrace();
+      }
+  }
+
    public static void main(String[] args) {
       Connection conn = null;
       Statement stmt = null;
@@ -232,7 +252,7 @@ public class imt2022521_sports {
          stmt = conn.createStatement();
          // Take input from user and call the respective function
          int choice = 0;
-         while(choice !=16){
+         while(choice !=17){
             System.out.println("Enter the operation you want to perform: ");
             System.out.println("1. Insert a player");
             System.out.println("2. Insert a sport");
@@ -249,7 +269,8 @@ public class imt2022521_sports {
             System.out.println("13. Number of players participating in a sport");
             System.out.println("14. Number of coaches for a sport");
             System.out.println("15. Number of participation points for a player");
-            System.out.println("16. Exit");
+            System.out.println("16. Get sport and coach for a player");
+            System.out.println("17. Exit");
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(System.console().readLine());
             switch(choice){
@@ -357,6 +378,11 @@ public class imt2022521_sports {
                   Number_Of_Participation_Points_For_A_Player(stmt, player_id7);
                   break;
                case 16:
+                  System.out.println("Enter player_id: ");
+                  String player_id8 = System.console().readLine();
+                  Get_Sport_And_Coach(stmt, player_id8);
+                  break;
+               case 17:
                   break;
                default:
                   System.out.println("Invalid choice");
