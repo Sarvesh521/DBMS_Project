@@ -249,10 +249,11 @@ public class imt2022521_sports {
          System.out.println("Connecting to database...");
          conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
          System.out.println("Creating statement...");
+         conn.setAutoCommit(false);
          stmt = conn.createStatement();
          // Take input from user and call the respective function
          int choice = 0;
-         while(choice !=17){
+         while(choice !=19){
             System.out.println("Enter the operation you want to perform: ");
             System.out.println("1. Insert a player");
             System.out.println("2. Insert a sport");
@@ -270,7 +271,9 @@ public class imt2022521_sports {
             System.out.println("14. Number of coaches for a sport");
             System.out.println("15. Number of participation points for a player");
             System.out.println("16. Get sport and coach for a player");
-            System.out.println("17. Exit");
+            System.out.println("17. Commit");
+            System.out.println("18. Rollback");
+            System.out.println("19. Exit");
             System.out.println("Enter your choice: ");
             choice = Integer.parseInt(System.console().readLine());
             switch(choice){
@@ -383,6 +386,22 @@ public class imt2022521_sports {
                   Get_Sport_And_Coach(stmt, player_id8);
                   break;
                case 17:
+                  try {
+                     conn.commit();
+                     System.out.println("Transaction committed");
+                  } catch (SQLException se) {
+                     se.printStackTrace();
+                  }
+                  break;
+               case 18:
+                  try {
+                     conn.rollback();
+                     System.out.println("Transaction rolled back");
+                  } catch (SQLException se) {
+                     se.printStackTrace();
+                  }
+                  break;
+               case 19:
                   break;
                default:
                   System.out.println("Invalid choice");
